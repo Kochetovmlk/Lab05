@@ -106,6 +106,8 @@ $ open https://github.com/google/googletest
    git commit -m "Configure build and coverage"
    git push origin master
    
+   ## Conclusion
+   
    Проект Lab05 должен быть настроен для сборки, выполнения модульных тестов и отслеживания покрытия кода с помощью Travis CI и Coveralls.io.
 
 
