@@ -1,0 +1,13 @@
+language: cpp
+compiler: gcc
+script:
+  - cmake .
+  - cmake --build .
+- cmake -DCODE_COVERAGE=ON -B . -S .
+- cmake --build . --target tests_coverage
+- lcov --directory . --capture --output-file coverage.info
+- lcov --remove coverage.info '/usr/*' "${HOME}"'/.cache/*' --output-file coverage.info
+- lcov --list coverage.info
+- coveralls-lcov --repo-token ${COVERALLS_TOKEN} coverage.info
+
+  - cmake --build . --target test

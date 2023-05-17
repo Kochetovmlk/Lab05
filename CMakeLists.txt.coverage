@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.12)
+
+project(coverage)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_library(coverage_config INTERFACE)
+
+option(CODE_COVERAGE "Enable coverage reporting" ON)
+
+if(CODE_COVERAGE)
+    message(STATUS "Enabling code coverage")
+    target_compile_options(coverage_config INTERFACE -O0 -g --coverage)
+    target_link_options(coverage_config INTERFACE --coverage)
+endif()
+
+add_executable(tests_coverage
+    test_banking.cpp
+)
+
+target_link_libraries(tests_coverage banking coverage_config)
